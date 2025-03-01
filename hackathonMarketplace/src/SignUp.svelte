@@ -1,23 +1,27 @@
 <script>
+    import { createEventDispatcher }from 'svelte';
     let email = '';
     let password = '';
     let sell = false;
-    function signUp() {
-        handleSignUp();
-        isSignedUp = true;
-    }
+    let error = '';
+
+    const dispatch = createEventDispatcher();
+
     function handleSignUp() {
-        let error = '';
-        if (email.includes("uvm.edu")) {
-            sell = true;
-        }
+        
         if (!email.includes("@")) {
             error = 'Please enter a valid email address.'
             return;
         }
-        if (!password.length > 5) {
+        if (password.length <= 5) 
+        {
             error = 'Enter a password with atleast 6 characters'
+            return;
         }
+        if (email.includes("uvm.edu")) {
+            sell = true;
+        }
+        dispatch('signUp');
     }
 </script>
 
@@ -32,8 +36,11 @@
         Password:
         <input type="password" bind:value={password} required >
     </label>
-    <button on:click={signUp}>Sign Up</button>
+    <button type="submit">Sign Up</button>
     </form>
+    {#if error}
+        <p style="color: red;">{error}</p>
+    {/if}
 </main>
 
 <style>
