@@ -43,7 +43,7 @@
 			</form>
 		</section>
 		<section class="box2">
-			<form action="#" method="POST">
+			<form on:submit|preventDefault={handleCreateListing}>
 				<h3>Make a Listing</h3>
 				<button>
 					Upload an Image
