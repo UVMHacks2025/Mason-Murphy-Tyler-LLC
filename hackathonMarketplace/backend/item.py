@@ -1,6 +1,6 @@
 import bcrypt
 import sqlite3
-import user as User
+import hackathonMarketplace.backend.user as User
 
 conn = sqlite3.connect('riditDB.db')
 cursor = conn.cursor()
