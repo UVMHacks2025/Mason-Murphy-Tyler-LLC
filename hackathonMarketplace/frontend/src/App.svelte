@@ -1,10 +1,13 @@
 <script lang="ts">
     import SignUp from './SignUp.svelte';
     let isSignedUp = false;
+	let showList = false;
     
+	//handling the signup
     function handleSignUp() {
         isSignedUp = true;
     }
+	// async function to post listing to the database
 	async function handleCreateListing(listing) {
 		listing.preventDefault();
 		const form = listing.target;
@@ -29,8 +32,8 @@
 {:else}
 	<main>
 		<header class="box1">
-			<h1>Welcome to Ridit!</h1>
 			<img src="logo.png" alt="logo" class="logo">
+			<h1>RidIt</h1>
 		</header>
 		<section class="box5">
 			<form>
@@ -39,19 +42,18 @@
 					<option value="technology">Technology</option>
 					<option value="outdoors">Outdoor Gear</option>
 				</select>
-				<input type="submit" value="Search">
 			</form>
 		</section>
 		<section class="box2">
-			<form on:submit|preventDefault={handleCreateListing}>
+			<form on:submit={handleCreateListing}>
 				<h3>Make a Listing</h3>
 				<button>
-					Enter your Email
-					<input type="text" class="email" required>
+					Enter your Email: 
+					<input type="text" name="email" required>
 				</button>
 				<button>
-					Enter your Password
-					<input type="text" class="password" required>
+					Enter your Password:
+					<input type="text" name="password" required>
 				</button>
 				<button>
 					Upload an Image
@@ -59,7 +61,7 @@
 				</button>
 				<button>
 					Enter your item name:
-					<input type="text" class="item" required>
+					<input type="text" name="item" required>
 				</button>
 				<button>
 					Which category does it belong in?
@@ -71,7 +73,7 @@
 				</button>
 				<button>
 					Enter your price:
-					<input type="text" class="price" required>
+					<input type="text" name="price" required>
 				</button>
 				<br>
 				<input type="submit" value="Post Listing">
@@ -83,19 +85,21 @@
 				<img src = '/chair.jpg' alt="yes sir">
 				<h3>Couch</h3>
 				<p>$696969696969</p>
-				
+				<button>Buy now <input type="button" ></button>
 			</div>
 			<div class="prod2">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="">
 				<h3>Couch</h3>
 				<p>$6969696969</p>
+				<button>Buy now <input type="button"></button>
 			</div>
 			<div class="prod3">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="">
 				<h3>Couch</h3>
 				<p>$69696969696</p>
+				<button>Buy now <input type="button"></button>
 			</div>
 		</section>
 		<section class="box4">
@@ -104,18 +108,21 @@
 				<img src = '/chair.jpg' alt="">
 				<h3>Couch</h3>
 				<p>$6969696969</p>
+				<button>Buy now <input type="button"></button>
 			</div>			
 			<div class="prod5">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="">
 				<h3>Couch</h3>
 				<p>$6969696969</p>
+				<button>Buy now <input type="button"></button>
 			</div>			
 			<div class="prod6">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="">
 				<h3>Couch</h3>
 				<p>$69696969</p>
+				<button>Buy now <input type="button"></button>
 			</div>
 		</section>
 		
@@ -129,9 +136,10 @@
 		grid-template-columns: auto auto auto auto;
 		grid-template-rows: 10% auto auto auto;
 		justify-content: space-evenly;
+		color: white;
 	}
 	section {
-		background-color: (0,0,0,.3);
+		background-color: rgba(0,0,0,.3);
 		border-radius: .5em;
 	}
 	.box1 {
@@ -173,6 +181,11 @@
 		height: 100px;
 		grid-column: 1;
 		
+	}
+	header > img {
+		margin: auto;
+		padding: 0em 4em;
+		justify-content: space-around;
 	}
 	@media (min-width: 640px) {
 		main {

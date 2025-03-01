@@ -8,7 +8,10 @@
 
     const dispatch = createEventDispatcher();
 
+    
+    // async function to handle signup
     async function handleSignUp() {
+
         // Validates email
         if (!email.includes('@')) {
             error = 'Please enter a valid email address';
@@ -20,7 +23,7 @@
             error = 'Password must be at least 6 characters long';
             return;
         }
-
+    
         //checks if email ends with .edu or not
         const role = email.endsWith('.edu') ? 'student' : 'notStudent';
 
@@ -30,7 +33,6 @@
             password: password,
             role: role
         };
-
     try {
             const response = await fetch('http://localhost:5000/signup', {
                 method: 'POST',
@@ -53,13 +55,16 @@
         } catch (err) {
             console.error('Error:', err);
             error = 'There was an error processing your signup.';
-        }
+        } 
     }
+        
 
 </script>
 
 <main>
-    <h1>Sign Up</h1>
+    <h1>Welcome to RidIt!</h1>
+    <img src="/logo.png" alt="logo">
+    <h2>Please Enter a Email and Password to Sign Up</h2>
     <form on:submit|preventDefault={handleSignUp}>
     <label>
         Email:
@@ -92,6 +97,13 @@
     form {
         display: flex;
         flex-direction: column;
+        margin: auto;
+    }
+    img {
+        height: 100px;
+        width: 100px;
+        margin: auto;
+        padding: 1em;
     }
 
 </style>
