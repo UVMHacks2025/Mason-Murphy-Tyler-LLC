@@ -12,10 +12,10 @@ def createUserAccount():
 
     return True
 
-@app.route('/hackathonmarketplace/src/svelte', methods=['POST'])
+@app.route('http://localhost:5000/', methods=['POST'])
 def createListing():
     form = request.form
-    newListing = Item(form.name, form.image, form.price, form.type)
+    newListing = Item(form.name, form.image, form.price, form.type, form.email, form.password, None)
     newListing.add_item_to_db()
     return newListing
 

@@ -12,10 +12,9 @@ class User:
         self.email = email
 
     @classmethod
-    def from_db(cls, username, password):
+    def from_db(cls, email, password):
         hash_pass = cls.hash(password)
-        hash_user = cls.hash(username)
-        cursor.execute(f"SELECT * FROM users WHERE password_hash = {hash_pass}")
+        cursor.execute(f"SELECT * FROM users WHERE password_hash = {hash_pass} AND email = {email}")
         data = cursor.fetchone()
         if data:
             return cls(data[0], data[1], data[2], f"{data[3]}  {data[4]}", data[5])
@@ -45,3 +44,8 @@ class User:
 
     def get_email(cls):
         return cls.email
+
+    def get_password(cls):
+        return cls.password
+
+
