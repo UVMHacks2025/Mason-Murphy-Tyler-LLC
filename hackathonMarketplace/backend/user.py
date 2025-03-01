@@ -8,14 +8,15 @@ class User:
     def __init__(self, userID, password, email, role= "notStudent"):
         self.userID = userID
         self.password = self.hash(password)
+        self.password = password
+        self.name = name
         self.email = email
         self.role = role
 
     @classmethod
     def from_db(cls, email, password):
         hash_pass = cls.hash(password)
-        hash_user = cls.hash(username)
-        cursor.execute("SELECT userID, password_hash, email, role FROM users WHERE email = ?", (email,))
+        cursor.execute(f"SELECT * FROM users WHERE password_hash = {hash_pass} AND email = {email}")
         data = cursor.fetchone()
         if data and bcrypt.checkpw(password.encode('utf-8'), data[1].encode('utf-8')):  
             return cls(data[0], data[1], data[2], data[3])  # Return matching user
@@ -38,3 +39,21 @@ class User:
         
         conn.commit()
         conn.close()
+    def add_user(cls):
+        cursor.execute(f"INSERT INTO user (password_hash, email, role) VALUES ({cls.password}, {cls.email}) ")
+
+    # getters
+
+    def get_userID(cls):
+        return cls.userID
+
+    def get_name(cls):
+        return cls.name
+
+    def get_email(cls):
+        return cls.email
+
+    def get_password(cls):
+        return cls.password
+
+

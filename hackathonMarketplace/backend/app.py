@@ -29,6 +29,10 @@ def createUserAccount():
 # Separate endpoints for listings and users
 @app.route('/createListing', methods=['POST'])
 def createListing():
+    form = request.form
+    newListing = Item(form.name, form.image, form.price, form.type, form.email, form.password, None)
+    newListing.add_item_to_db()
+    return newListing
     try:
         form = request.get_json()
         newListing = Item(form["name"], form["image"], form["price"], form["type"])
