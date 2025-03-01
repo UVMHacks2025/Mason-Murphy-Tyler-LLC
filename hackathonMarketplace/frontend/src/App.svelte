@@ -22,11 +22,11 @@
 					<option value="technology">Technology</option>
 					<option value="outdoors">Outdoor Gear</option>
 				</select>
-				<input type="submit" value="Submit">
+				<input type="submit" value="Search">
 			</form>
 		</section>
 		<section class="box2">
-			<form>
+			<form action="#" method="POST">
 				<h3>Make a Listing</h3>
 				<button>
 					Upload an Image
@@ -38,7 +38,7 @@
 				</button>
 				<button>
 					Which category does it belong in?
-					<select name="category" id="category" required>
+					<select name="category" id="category">
 						<option value="furniture">Furniture</option>
 						<option value="technology">Technology</option>
 						<option value="outdoors">Outdoor Gear</option>
@@ -46,7 +46,7 @@
 				</button>
 				<button>
 					Enter your price:
-					<input type="text" class="price">
+					<input type="text" class="price" required>
 				</button>
 				<br>
 				<input type="submit" value="Post Listing">
@@ -136,6 +136,12 @@
 	img {
 		margin: auto;
 		height: auto;
+	}
+	.logo{
+		margin: auto;
+		width:auto;
+		height: auto;
+		grid-column: 1;
 	}
 	@media (min-width: 640px) {
 		main {
