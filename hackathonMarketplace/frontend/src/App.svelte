@@ -46,6 +46,14 @@
 			<form on:submit|preventDefault={handleCreateListing}>
 				<h3>Make a Listing</h3>
 				<button>
+					Enter your Email
+					<input type="text" class="email" required>
+				</button>
+				<button>
+					Enter your Password
+					<input type="text" class="password" required>
+				</button>
+				<button>
 					Upload an Image
 					<input type="file" name="image" required>
 				</button>
