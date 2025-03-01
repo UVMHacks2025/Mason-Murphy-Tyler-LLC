@@ -1,13 +1,10 @@
 <script>
-    import { createEventDispatcher } from "svelte";
     let email = '';
     let password = '';
     let sell = false;
-    const dispatch = createEventDispatcher;
     function signUp() {
-        if (onSignUp) {
-            onSignUp();
-        }
+        handleSignUp();
+        isSignedUp = true;
     }
     function handleSignUp() {
         let error = '';
@@ -21,7 +18,6 @@
         if (!password.length > 5) {
             error = 'Enter a password with atleast 6 characters'
         }
-        dispatch('signUp');
     }
 </script>
 

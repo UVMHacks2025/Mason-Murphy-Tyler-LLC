@@ -6,9 +6,11 @@
 	}
 </script>
 
+<!--
 {#if !isSignedUp}
 	<SignUp on:signUp={handleSignUp} />
 {:else}
+-->
 	<main>
 		<header class="box1">
 			<nav></nav>
@@ -18,15 +20,48 @@
 		</section>
 		<section class="box3">
 			<div class="prod1">
-
+				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
+				<img src = './assets/images/couch.jpg' alt="">
+				<h3>Couch</h3>
+				<p>$696969696969</p>
+			</div>
+			<div class="prod2">
+				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
+				<img src = './assets/images/couch.jpg' alt="">
+				<h3>Couch</h3>
+				<p>$6969696969</p>
+			</div>
+			<div class="prod3">
+				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
+				<img src = './assets/images/couch.jpg' alt="">
+				<h3>Couch</h3>
+				<p>$69696969696</p>
 			</div>
 		</section>
 		<section class="box4">
-			<p>Hello World</p>
+			<div class="prod4">
+				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
+				<img src = './assets/images/couch.jpg' alt="">
+				<h3>Couch</h3>
+				<p>$6969696969</p>
+			</div>			
+			<div class="prod5">
+				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
+				<img src = './assets/images/couch.jpg' alt="">
+				<h3>Couch</h3>
+				<p>$6969696969</p>
+			</div>			
+			<div class="prod6">
+				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
+				<img src = './assets/images/couch.jpg' alt="">
+				<h3>Couch</h3>
+				<p>$69696969</p>
+			</div>
 		</section>
 		
 	</main>
-{/if}
+
+<!-- {/if} -->
 
 <style>
 	main {
@@ -36,6 +71,7 @@
 		justify-content: space-evenly;
 	}
 	.box1 {
+		margin: auto;
 		grid-row: 1;
 		grid-column: 1;
 	}
