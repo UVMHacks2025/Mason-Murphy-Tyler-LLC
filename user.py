@@ -20,10 +20,10 @@ class User:
         return True
 
 
-    def hash(self, input):
+    def hash(cls, input):
         byteWord = input.encode('UTF-8')
         salt = bcrypt.gensalt()
         hashWord = bcrypt.hashpw(byteWord, salt)
         return hashWord
 
-    def add_user_to_db(self):
+    def add_user_to_db(cls):
