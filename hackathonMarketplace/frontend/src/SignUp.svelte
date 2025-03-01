@@ -18,7 +18,7 @@
             error = 'Enter a password with atleast 6 characters'
             return;
         }
-        if (email.includes("uvm.edu")) {
+        if (email.includes("@uvm.edu")) {
             sell = true;
         }
         dispatch('signUp');
