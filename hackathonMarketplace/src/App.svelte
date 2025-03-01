@@ -1,27 +1,56 @@
-<script>
-	export let name;
+<script lang="ts">
+	import SignUp from './SignUp.svelte';
+	let isSignedUp = false;
+	function handleSignUp() {
+		isSignedUp = true;
+	}
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+{#if !isSignedUp}
+	<onSignUp on:signUp={handleSignUp} />
+{:else}
+	<main>
+		<header class="box1">
+			<nav></nav>
+			<h1>Welcome to Ridit</h1>
+		</header>
+		<section class="box2">
+			<p> hello box 2</p>
+		</section>
+		<section class="box3">
+			<p>Hello box3</p>
+		</section>
+		<section class="box4">
+			<p>Hello World</p>
+		</section>
+		
+	</main>
+{/if}
 
 <style>
 	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+		grid-template-rows: 10% auto auto auto;
+		justify-content: space-evenly;
 	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
+	.box1 {
+		grid-row: 1;
+		grid-column: 1;
 	}
-
+	.box2 {
+		grid-row: 2/3;
+		grid-column: 1;
+	}
+	.box3 {
+		grid-row: 2;
+	}
+	.box3 {
+		grid-row: 3;
+	}
+	.box4 {
+		grid-row: 4;
+	}
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
