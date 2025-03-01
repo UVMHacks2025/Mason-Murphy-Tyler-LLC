@@ -1,9 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-from hackathonMarketplace.backend.item import User, Item
+from hackathonMarketplace.backend import User, Item
 
 app = Flask(__name__)
 CORS(app)
+
+def home():
+    return render_template("../frontend/public/index.html")
 
 @app.route('/signup', methods=['POST'])
 def createUserAccount():
@@ -33,13 +36,6 @@ def createListing():
     newListing = Item(form.name, form.image, form.price, form.type, form.email, form.password, None)
     newListing.add_item_to_db()
     return newListing
-    try:
-        form = request.get_json()
-        newListing = Item(form["name"], form["image"], form["price"], form["type"])
-        newListing.add_item_to_db()
-        return jsonify({"success": True, "message": "Listing added successfully!"}), 201
-    except Exception as e:
-        return jsonify({"success": False, "message": str(e)}), 500
 
 @app.route('/createUser', methods=['POST'])
 def createNewUser():

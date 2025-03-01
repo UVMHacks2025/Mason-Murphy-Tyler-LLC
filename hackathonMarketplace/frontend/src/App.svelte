@@ -7,6 +7,7 @@
     function handleSignUp() {
         isSignedUp = true;
     }
+	/*
 	// async function to post listing to the database
 	async function handleCreateListing(listing) {
 		listing.preventDefault();
@@ -23,7 +24,9 @@
 		} else {
 			alert('Failed to create listing')
 		}
+		
 	}
+		*/
 </script>
 
 
@@ -45,7 +48,7 @@
 			</form>
 		</section>
 		<section class="box2">
-			<form on:submit={handleCreateListing}>
+			<form>
 				<h3>Make a Listing</h3>
 				<button>
 					Enter your Email: 
@@ -83,22 +86,22 @@
 			<div class="prod1">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="yes sir">
-				<h3>Couch</h3>
-				<p>$696969696969</p>
+				<h3>Chair</h3>
+				<p>$10</p>
 				<button>Buy now <input type="button" ></button>
 			</div>
 			<div class="prod2">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="">
-				<h3>Couch</h3>
-				<p>$6969696969</p>
+				<h3>Table</h3>
+				<p>$10</p>
 				<button>Buy now <input type="button"></button>
 			</div>
 			<div class="prod3">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="">
-				<h3>Couch</h3>
-				<p>$69696969696</p>
+				<h3>Pillow</h3>
+				<p>$15</p>
 				<button>Buy now <input type="button"></button>
 			</div>
 		</section>
@@ -107,21 +110,21 @@
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="">
 				<h3>Couch</h3>
-				<p>$6969696969</p>
+				<p>$25</p>
 				<button>Buy now <input type="button"></button>
 			</div>			
 			<div class="prod5">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="">
 				<h3>Couch</h3>
-				<p>$6969696969</p>
+				<p>$30</p>
 				<button>Buy now <input type="button"></button>
 			</div>			
 			<div class="prod6">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
 				<img src = '/chair.jpg' alt="">
 				<h3>Couch</h3>
-				<p>$69696969</p>
+				<p>$40</p>
 				<button>Buy now <input type="button"></button>
 			</div>
 		</section>

@@ -10,7 +10,8 @@
 
     
     // async function to handle signup
-    async function handleSignUp() {
+    
+    function handleSignUp() {
 
         // Validates email
         if (!email.includes('@')) {
@@ -22,11 +23,13 @@
         if (password.length <= 5) {
             error = 'Password must be at least 6 characters long';
             return;
-        }
-    
+        };
+        dispatch('signUp');
+    }
+        /*
         //checks if email ends with .edu or not
         const role = email.endsWith('.edu') ? 'student' : 'notStudent';
-
+        
         //sending for backend
         const userData = {
             email: email,
@@ -58,7 +61,7 @@
         } 
     }
         
-
+ */
 </script>
 
 <main>
