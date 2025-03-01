@@ -7,17 +7,22 @@ cursor = conn.cursor()
 
 class Item:
     # constructor from form
-    def __init__(self, name, image, price, quality, description, username, password):
+    def __init__(self, name, image, price, username, password):
         self.name = name
         self.image = image
         self.price = price
-        self.quality = quality
-        self.description = description
         self.user = User.from_db(username, password)
 
     # constructor from database
     @classmethod
     def item_from_db(cls, name):
+        return True
+
+    # functions
+
+    # adds item to the database
+    def add_item_to_db(cls):
+        cursor.execute(f"INSERT INTO item (name, image, price, userID) VALUES (self.name, self.image, self.price, self.user.userID)")
         return True
 
     # getters

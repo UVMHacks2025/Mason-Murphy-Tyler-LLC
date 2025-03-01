@@ -5,19 +5,23 @@ cursor = conn.cursor()
 
 class User:
 
-    def __init__(self, username, password, name, email, phoneNumber):
-        self.username = hash(username)
-        self.password = self.hash(password)
+    def __init__(self, userID, username, password, name, email):
+        self.userID = userID
+        self.username = self.username
+        self.password = self.password
         self.name = name
         self.email = email
-        self.phoneNumber = phoneNumber
 
     @classmethod
     def from_db(cls, username, password):
         hash_pass = cls.hash(password)
         hash_user = cls.hash(username)
-        userData = cursor.execute(f"SELECT * FROM users WHERE username = {hash_user}, password = {hash_pass}")
-        return True
+        cursor.execute(f"SELECT * FROM users WHERE username = {hash_user}, password = {hash_pass}")
+        data = cursor.fetchone()
+        if data:
+            return cls(data[0], data[1], data[2], f"{data[3]}  {data[4]}", data[5])
+        else:
+            return None
 
 
     def hash(cls, input):
@@ -26,4 +30,5 @@ class User:
         hashWord = bcrypt.hashpw(byteWord, salt)
         return hashWord
 
-    def add_user_to_db(cls):
+    def retrieve_userID(cls):
+        id = cursor.execute(f"SELECT id FROM users WHERE username = {cls.username}")
