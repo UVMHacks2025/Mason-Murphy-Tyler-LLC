@@ -5,6 +5,22 @@
     function handleSignUp() {
         isSignedUp = true;
     }
+	async function handleCreateListing(listing) {
+		listing.preventDefault();
+		const form = listing.target;
+		const formData = new FormData(form);
+
+		const response = await fetch ('http://localhost:5000/', {
+			method: 'POST',
+			body: formData
+		});
+
+		if (response.ok) {
+			alert('Listing Successful');
+		} else {
+			alert('Failed to create listing')
+		}
+	}
 </script>
 
 
@@ -14,6 +30,7 @@
 	<main>
 		<header class="box1">
 			<h1>Welcome to Ridit!</h1>
+			<img src="logo.png" alt="logo" class="logo">
 		</header>
 		<section class="box5">
 			<form>
@@ -58,6 +75,7 @@
 				<img src = '/chair.jpg' alt="yes sir">
 				<h3>Couch</h3>
 				<p>$696969696969</p>
+				
 			</div>
 			<div class="prod2">
 				<!-- src will be image uploaded alt will be the prod name, h3 prod name, p price -->
@@ -104,6 +122,10 @@
 		grid-template-rows: 10% auto auto auto;
 		justify-content: space-evenly;
 	}
+	section {
+		background-color: (0,0,0,.3);
+		border-radius: .5em;
+	}
 	.box1 {
 		margin: auto;
 		grid-row: 1;
@@ -139,9 +161,10 @@
 	}
 	.logo{
 		margin: auto;
-		width:auto;
-		height: auto;
+		width:100px;
+		height: 100px;
 		grid-column: 1;
+		
 	}
 	@media (min-width: 640px) {
 		main {
