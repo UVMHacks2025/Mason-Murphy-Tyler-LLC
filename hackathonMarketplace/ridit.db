@@ -1,0 +1,27 @@
+
+CREATE TABLE "user" (
+	"userID"	INTEGER NOT NULL UNIQUE,
+	"password_hash"	TEXT NOT NULL,
+	"email"	TEXT NOT NULL,
+	"role"	TEXT DEFAULT 'notStudent',
+	PRIMARY KEY("userID" AUTOINCREMENT)
+);
+
+CREATE TABLE "item" (
+	"itemID"	INTEGER NOT NULL UNIQUE,
+	"image"	TEXT,
+	"price"	NUMERIC NOT NULL DEFAULT 0,
+	"type"	TEXT,
+	"userID"	INTEGER NOT NULL UNIQUE,
+	"name"	TEXT NOT NULL,
+	PRIMARY KEY("itemID" AUTOINCREMENT),
+	FOREIGN KEY("userID") REFERENCES "user"("userID")
+);
+
+CREATE TABLE "buys" (
+	"userID"	TEXT,
+	"itemID"	TEXT,
+	FOREIGN KEY("itemID") REFERENCES "item"("itemID"),
+	FOREIGN KEY("userID") REFERENCES "user"("userID")
+);
+
