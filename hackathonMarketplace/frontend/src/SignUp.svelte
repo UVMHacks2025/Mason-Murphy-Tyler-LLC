@@ -4,25 +4,58 @@
     let password = '';
     let sell = false;
     let error = '';
+    let successMessage = '';
 
     const dispatch = createEventDispatcher();
 
-    function handleSignUp() {
-        
-        if (!email.includes("@")) {
-            error = 'Please enter a valid email address.'
+    async function handleSignUp() {
+        // Validates email
+        if (!email.includes('@')) {
+            error = 'Please enter a valid email address';
             return;
         }
-        if (password.length <= 5) 
-        {
-            error = 'Enter a password with atleast 6 characters'
+
+        // Validates password
+        if (password.length <= 5) {
+            error = 'Password must be at least 6 characters long';
             return;
         }
-        if (email.includes("@uvm.edu")) {
-            sell = true;
+
+        //checks if email ends with .edu or not
+        const role = email.endsWith('.edu') ? 'student' : 'notStudent';
+
+        //sending for backend
+        const userData = {
+            email: email,
+            password: password,
+            role: role
+        };
+
+    try {
+            const response = await fetch('http://localhost:5000/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData)
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Successful sign-up, display success message
+                successMessage = 'Sign-up successful!';
+                error = ''; // Clear error if sign-up is successful
+            } else {
+                // Handle error response from the server
+                error = data.message || 'Error signing up';
+            }
+        } catch (err) {
+            console.error('Error:', err);
+            error = 'There was an error processing your signup.';
         }
-        dispatch('signUp');
     }
+
 </script>
 
 <main>
@@ -41,6 +74,12 @@
     {#if error}
         <p style="color: red;">{error}</p>
     {/if}
+
+    {#if successMessage}
+        <p style="color: green;">{successMessage}</p>
+    {/if}
+
+
 </main>
 
 <style>
