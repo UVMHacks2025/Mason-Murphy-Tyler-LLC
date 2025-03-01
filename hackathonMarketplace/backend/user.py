@@ -5,32 +5,36 @@ cursor = conn.cursor()
 
 class User:
 
-    def __init__(self, userID, password, name, email):
+    def __init__(self, userID, password, email, role= "notStudent"):
         self.userID = userID
-        self.password = self.password
-        self.name = name
+        self.password = self.hash(password)
         self.email = email
+        self.role = role
 
     @classmethod
-    def from_db(cls, username, password):
+    def from_db(cls, email, password):
         hash_pass = cls.hash(password)
         hash_user = cls.hash(username)
-        cursor.execute(f"SELECT * FROM users WHERE password_hash = {hash_pass}")
+        cursor.execute("SELECT userID, password_hash, email, role FROM users WHERE email = ?", (email,))
         data = cursor.fetchone()
-        if data:
-            return cls(data[0], data[1], data[2], f"{data[3]}  {data[4]}", data[5])
+        if data and bcrypt.checkpw(password.encode('utf-8'), data[1].encode('utf-8')):  
+            return cls(data[0], data[1], data[2], data[3])  # Return matching user
         else:
             return None
-
-
-    def hash(cls, input):
-        byteWord = input.encode('UTF-8')
+    
+    @staticmethod
+    def hash(password):
+        byte_password = password.encode('UTF-8')
         salt = bcrypt.gensalt()
-        hashWord = bcrypt.hashpw(byteWord, salt)
-        return hashWord
+        hashed_password = bcrypt.hashpw(byte_password, salt)
+        return hashed_password.decode('UTF-8')
 
     def retrieve_userID(cls):
         id = cursor.execute(f"SELECT userID FROM user WHERE username_hash = {cls.username}")
         
-    def add_user(cls):
-        cursor.execute(f"INSERT INTO user (password_hash, email, role) VALUES ({password}, {email}) ")
+    def add_user(self):
+        cursor.execute("INSERT INTO users (password_hash, email, role) VALUES (?, ?, ?)", 
+                       (self.password, self.email, self.role))
+        
+        conn.commit()
+        conn.close()
