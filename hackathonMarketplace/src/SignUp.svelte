@@ -3,9 +3,22 @@
     let password = '';
     let sell = false;
     export let onSignUp;
+    function signUp() {
+        if (onSignUp) {
+            onSignUp();
+        }
+    }
     function handleSignUp() {
+        error = '';
         if (email.includes("uvm.edu")) {
             sell = true;
+        }
+        if (!email.includes("@")) {
+            error = 'Please enter a valid email address.'
+            return;
+        }
+        if (!password.length > 5) {
+            error = 'Enter a password with atleast 6 characters'
         }
 
         onSignUp();
@@ -21,8 +34,22 @@
     </label>
     <label>
         Password:
-        <input type="password" bind:value={email} required >
+        <input type="password" bind:value={password} required >
     </label>
-    <button type="create"> Sign up </button>
+    <button on:click={signUp}>Sign Up</button>
     </form>
 </main>
+
+<style>
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+</style>

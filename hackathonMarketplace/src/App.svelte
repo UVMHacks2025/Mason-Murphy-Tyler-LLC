@@ -2,12 +2,12 @@
 	import SignUp from './SignUp.svelte';
 	let isSignedUp = false;
 	function handleSignUp() {
-		isSignedUp = true;
+		isSignedUp = false;
 	}
 </script>
 
 {#if !isSignedUp}
-	<onSignUp on:signUp={handleSignUp} />
+	<SignUp onSignUp={handleSignUp} />
 {:else}
 	<main>
 		<header class="box1">
