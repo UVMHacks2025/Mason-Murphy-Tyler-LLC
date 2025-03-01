@@ -7,7 +7,7 @@ class User:
 
     def __init__(self, userID, password, name, email):
         self.userID = userID
-        self.password = self.password
+        self.password = password
         self.name = name
         self.email = email
 
@@ -33,4 +33,15 @@ class User:
         id = cursor.execute(f"SELECT userID FROM user WHERE username_hash = {cls.username}")
         
     def add_user(cls):
-        cursor.execute(f"INSERT INTO user (password_hash, email, role) VALUES ({password}, {email}) ")
+        cursor.execute(f"INSERT INTO user (password_hash, email, role) VALUES ({cls.password}, {cls.email}) ")
+
+    # getters
+
+    def get_userID(cls):
+        return cls.userID
+
+    def get_name(cls):
+        return cls.name
+
+    def get_email(cls):
+        return cls.email
