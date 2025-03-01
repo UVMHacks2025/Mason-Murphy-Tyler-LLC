@@ -1,23 +1,31 @@
-<script>
-	export let name;
+<script lang="ts">
+	import SignUp from './SignUp.svelte';
+	let isSignedUp = false;
+	function handleSignUp() {
+		isSignedUp = true;
+	}
 </script>
 
-<main>
-	<header class="box1">
-		<nav></nav>
-		<h1>Welcome to Ridit</h1>
-	</header>
-	<section class="box2">
-		<p> hello box 2</p>
-	</section>
-	<section class="box3">
-		<p>Hello box3</p>
-	</section>
-	<section class="box4">
-		<p>Hello World</p>
-	</section>
-	
-</main>
+{#if !isSignedUp}
+	<onSignUp on:signUp={handleSignUp} />
+{:else}
+	<main>
+		<header class="box1">
+			<nav></nav>
+			<h1>Welcome to Ridit</h1>
+		</header>
+		<section class="box2">
+			<p> hello box 2</p>
+		</section>
+		<section class="box3">
+			<p>Hello box3</p>
+		</section>
+		<section class="box4">
+			<p>Hello World</p>
+		</section>
+		
+	</main>
+{/if}
 
 <style>
 	main {
