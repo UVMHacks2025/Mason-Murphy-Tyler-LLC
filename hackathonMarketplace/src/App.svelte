@@ -2,12 +2,12 @@
 	import SignUp from './SignUp.svelte';
 	let isSignedUp = false;
 	function handleSignUp() {
-		isSignedUp = false;
+		isSignedUp = true;
 	}
 </script>
 
 {#if !isSignedUp}
-	<SignUp onSignUp={handleSignUp} />
+	<SignUp on:signUp={handleSignUp} />
 {:else}
 	<main>
 		<header class="box1">
@@ -15,10 +15,11 @@
 			<h1>Welcome to Ridit</h1>
 		</header>
 		<section class="box2">
-			<p> hello box 2</p>
 		</section>
 		<section class="box3">
-			<p>Hello box3</p>
+			<div class="prod1">
+
+			</div>
 		</section>
 		<section class="box4">
 			<p>Hello World</p>
@@ -44,6 +45,8 @@
 	}
 	.box3 {
 		grid-row: 2;
+		display: flex;
+		justify-content: center;
 	}
 	.box3 {
 		grid-row: 3;
