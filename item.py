@@ -7,10 +7,11 @@ cursor = conn.cursor()
 
 class Item:
     # constructor from form
-    def __init__(self, name, image, price, username, password):
+    def __init__(self, name, image, price, type, username, password):
         self.name = name
         self.image = image
         self.price = price
+        self.type = type
         self.user = User.from_db(username, password)
 
     # constructor from database
